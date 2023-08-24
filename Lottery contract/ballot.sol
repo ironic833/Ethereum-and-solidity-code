@@ -1,57 +1,72 @@
 // SPDX-License-Identifier: MIT
- 
+
 pragma solidity ^0.8.11;
- 
+
 contract Lottery {
-    // global variable to store manager address
+    // The address of the manager who oversees the lottery.
     address public manager;
-    // global variable to store players addresses which are payable
+    // An array containing addresses of participants who have entered the lottery.
     address payable[] public players;
- 
+
     constructor() {
-        // manager is the person who deployed the contract
+        // The contract deployer becomes the manager.
         manager = msg.sender;
     }
- 
-    /** Function to return all players separated by a comma **/
+
+    /** 
+     * Returns an array of addresses of participants in the lottery.
+     * @return An array of payable addresses representing participants.
+     */
     function getPlayers() public view returns (address payable[] memory) {
         return players;
     }
- 
-    /** Function to return the amount of eth in the lottery contract **/
+
+    /** 
+     * Returns the current amount of Ether held in the lottery contract.
+     * @return The balance of the contract in Ether.
+     */
     function getPrize() public view returns (uint) {
-        // .balance is the total eth sent to this contract.
         return address(this).balance;
     }
- 
-    /** Function to enter in the lottery **/
+
+    /** 
+     * Allows a user to enter the lottery by sending 1 Ether.
+     */
     function enter() public payable {
-        // check if the player hasn't already registered to the lottery
-        for (uint i = 0; i < players.length; i++) require(msg.sender != players[i], '409: the player has already registered to the lottery.');
- 
-        // check if we send the good amount of ether to enter in the lottery
-        require(msg.value == 1 ether, '402: the amount to participate is 1 ether.');
- 
-        // add the address of the player in the array
+        // Ensure the player has not already registered for the lottery.
+        for (uint i = 0; i < players.length; i++) {
+            require(msg.sender != players[i], '409: Player is already registered.');
+        }
+
+        // Ensure the correct amount of Ether is sent to participate.
+        require(msg.value == 1 ether, '402: Participation requires 1 ether.');
+
+        // Add the player's address to the list of participants.
         players.push(payable(msg.sender));
     }
- 
-    /** Function to pick the winner **/
+
+    /** 
+     * Randomly selects a winner from the participants and sends them the prize money.
+     * Restricted to be called only by the manager.
+     */
+     
     function pickWinner() public payable restricted {
-        // get randomly a player then send to him the money
-        // doesn't call a function to generate random number but put code directly here to have less gas fees
-        players[uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players))) % players.length].transfer(address(this).balance);
- 
-        // reset players array to be ready for next round
+        // Generate a random index to select a winner and transfer the prize.
+        address payable winner = players[uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players))) % players.length];
+        winner.transfer(address(this).balance);
+
+        // Clear the list of participants to prepare for the next round.
         delete players;
     }
- 
-    /** Modifier function to check if the user is the manager **/
+
+    /** 
+     * Modifier that restricts access to functions only to the manager.
+     */
     modifier restricted() {
-        // check if the person calling the function is the manager
-        require(msg.sender == manager, '403: call restricted to manager.');
- 
-        // place holder to inject code inside when the modifier is used in a function
+        // Ensure the caller is the manager.
+        require(msg.sender == manager, '403: Restricted to the manager.');
+
+        // Continue with the function's execution.
         _;
     }
 }

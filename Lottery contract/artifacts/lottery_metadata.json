@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.19+commit.7dd6d404"
+		"version": "0.8.11+commit.d7f03943"
 	},
 	"language": "Solidity",
 	"output": {
@@ -12,10 +12,69 @@
 			},
 			{
 				"inputs": [],
+				"name": "enter",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPlayers",
+				"outputs": [
+					{
+						"internalType": "address payable[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPrize",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "manager",
 				"outputs": [
 					{
 						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pickWinner",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "players",
+				"outputs": [
+					{
+						"internalType": "address payable",
 						"name": "",
 						"type": "address"
 					}
@@ -31,15 +90,28 @@
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"enter()": {
+					"notice": "Function to enter in the lottery *"
+				},
+				"getPlayers()": {
+					"notice": "Function to return all players separated by a comma *"
+				},
+				"getPrize()": {
+					"notice": "Function to return the amount of eth in the lottery contract *"
+				},
+				"pickWinner()": {
+					"notice": "Function to pick the winner *"
+				}
+			},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"ballot.sol": "lottery"
+			"ballot.sol": "Lottery"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -52,10 +124,11 @@
 	},
 	"sources": {
 		"ballot.sol": {
-			"keccak256": "0x9de320331a593e48e7668545444ea0e0d7eabeb0a31f6672cda4dc7398b0f0b1",
+			"keccak256": "0xfcfeb2d32f0cb654bd5b227a6a2155aff6faf1a421d306cbd4838ecfe4028c08",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://a5398b176a06f5de3f9953feb087bae9d752f23202faa6e0f87f7901e40ff040",
-				"dweb:/ipfs/QmTuJ2P8DYG3Lir9e1iBzTDAwZD5AgCYX96be8x2dVXFiY"
+				"bzz-raw://4b7e769aa4372ab5e7f76a547eeac21a0a4fb0899264bd294e00a5de13433f89",
+				"dweb:/ipfs/QmR7VgAexf3kJZSkoPGqEgRHwTUztgDMRdeyBBgzw1yLeU"
 			]
 		}
 	},
