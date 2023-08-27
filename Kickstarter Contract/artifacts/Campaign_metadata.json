@@ -6,6 +6,20 @@
 	"output": {
 		"abi": [
 			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "finalizeRequest",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"constant": true,
 				"inputs": [
 					{
@@ -66,6 +80,20 @@
 					},
 					{
 						"name": "approvalCount",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "approversCount",
+				"outputs": [
+					{
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -137,6 +165,10 @@
 					{
 						"name": "minimum",
 						"type": "uint256"
+					},
+					{
+						"name": "creator",
+						"type": "address"
 					}
 				],
 				"payable": false,
@@ -164,9 +196,9 @@
 	},
 	"sources": {
 		"campaign.sol": {
-			"keccak256": "0x2d87ce8aa89b26c7661d51508ece3a89c19916cbc08e63f49ffc954400674c37",
+			"keccak256": "0xb76dfa6e827479b24b159caaf732587b62a944c29cdc797b4c86bdba86f04800",
 			"urls": [
-				"bzzr://f89dc152af32ae86bafa3ad8bc9541f4b8054ead33eb6b95cfdc9e842ed25292"
+				"bzzr://60aeb840f000ab7eabd1c41141758e18550cf8505b998cecb000230304e839a9"
 			]
 		}
 	},
