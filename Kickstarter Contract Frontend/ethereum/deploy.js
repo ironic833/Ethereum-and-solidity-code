@@ -3,10 +3,13 @@ const { Web3 } = require("web3");
 const compiledFactory = require('./build/CampaignFactory.json');
 
 const provider = new HDWalletProvider(
+
   "brother gift math cattle check grant wealth mass eyebrow limit veteran melt",
   // remember to change this to your own phrase!
+
   "https://goerli.infura.io/v3/e58884474cad47f882e0144aef791018"
   // remember to change this to your own endpoint!
+  
 );
 
 const web3 = new Web3(provider);
