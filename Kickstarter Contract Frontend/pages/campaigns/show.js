@@ -11,7 +11,13 @@ class CampaignShow extends Component {
 
         console.log(summary);
 
-        return {};
+        return {
+            minimumContribution: summary[0],
+            balance: summary[1],
+            requestsCount: summary[2],
+            approversCount: summary[3],
+            manager: summary[4]
+        };
     }
 
     render() {
